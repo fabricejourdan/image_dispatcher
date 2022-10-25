@@ -13,14 +13,14 @@ class Pager(object):
         if n < self.count - 1:
             n += 1
         return n
-        
+
     @property
     def prev(self):
         n = self.current
         if n > 0:
             n -= 1
         return n
-        
+
     @property
     def last(self):
         return self.count - 1

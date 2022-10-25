@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ data.name}} {% endblock %}
+
+{% block content %}
+<div class="container" style="width:100%;">
+
+    <nav class="navbar">
+        <div class="navbar-header">
+            <span class="navbar-brand">{{ config.APPNAME }}</span>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="/">|<-</a></li>
+            <li><a href="/{{pager.prev}}"><-</a></li>
+            <li><a href="/{{pager.next}}">-></a></li>
+            <li><a href="/{{pager.count-1}}">>|</a></li>
+            <li><a href="/dispatch">Dispatch</a></li>
+            <li><a href="/reload">Reload</a></li>
+            <li><a href="">------</a></li>
+            {% for label in labels %}
+            <li><a href="/{{pager.current}}/{{loop.index}}">{{ label }}</a></li>
+            {% endfor %}
+            <li><a href="">------</a></li>
+            {% include 'links.html' %}
+        </ul>
+    </nav>
+
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{ url_for('static', filename='/'+data.name) }}" class="img-responsive center-block" alt="">
+        </div>
+        <div class="col-md-6">
+            <h2>{{data.name}}</h2>
+            {% include 'table.html' %}
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

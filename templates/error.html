@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}Error{% endblock %}
+
+{% block content %}
+<div class="container" style="width:100%;">
+
+    <nav class="navbar">
+        <div class="navbar-header">
+            <span class="navbar-brand">{{ config.APPNAME }}</span>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/reload">Reload</a></li>
+        </ul>
+    </nav>
+
+    <div class="row">
+
+        <div class="error-template" style="padding:40px 15px; text-align: center;">
+            <h1>{{message1}}</h1>
+            <h2>{{message2}}</h2>
+            <!--<div class="error-details">message </div>-->
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -60,7 +60,7 @@ def create_app(args):
     app = Flask(__name__, static_folder=STATIC_FOLDER)
     app.config['APPNAME'] = "Image Dispatcher"
     if args.user:
-        app.config['APPNAME'] += ' - ' + args.user.upper()
+        app.config['APPNAME'] += ' (user: ' + args.user.upper() + ')'
     app.config['FOLDER'] = folder
     app.config['table'] = load_images(folder)
     app.config['pager'] = Pager(len(app.config['table']))

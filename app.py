@@ -45,17 +45,17 @@ def load_images(directory):
 
 
 def create_app(args):
-    folder = args.folder
-
     STATIC_FOLDER = 'to_dispatch'
 
+    folder = args.folder
     string_labels = args.labels
+
     LABELS = [x.capitalize() for x in string_labels.split(',')]
-    # ['Classe1', 'Classe2', 'Classe3', 'Classe4', 'Classe5', 'Incorrect']
     LABELS.append('Incorrect')
 
     app = Flask(__name__, static_folder=STATIC_FOLDER)
     app.config['APPNAME'] = "Image Dispatcher"
+    app.config['FOLDER'] = folder
     app.config['table'] = load_images(folder)
     app.config['pager'] = Pager(len(app.config['table']))
 
@@ -126,17 +126,17 @@ def create_app(args):
     def dispatch():
         print('dispatch')
         for label in LABELS:
-            sub_folder = STATIC_FOLDER + '/' + label
+            sub_folder = app.config['FOLDER'] + '/' + label
             if not os.path.exists(sub_folder):
                 os.makedirs(sub_folder)
                 print('dispatch - create directory ', sub_folder)
         for tab in current_app.config['table']:
             if tab['label'] != '':
-                original = STATIC_FOLDER + '/' + tab['name']
-                target = STATIC_FOLDER + '/' + tab['label'] + '/' + tab['name']
+                original = app.config['FOLDER'] + '/' + tab['name']
+                target = app.config['FOLDER'] + '/' + tab['label'] + '/' + tab['name']
                 shutil.move(original, target)
                 print('dispatch - move file ', original, '->', target)
-        current_app.config['table'] = load_images(STATIC_FOLDER)
+        current_app.config['table'] = load_images(app.config['FOLDER'])
         print('label - new table :', current_app.config['table'])
         current_app.config['pager'] = Pager(len(current_app.config['table']))
         ind = 0
@@ -160,7 +160,7 @@ def create_app(args):
     def reload():
         print('reload')
         tmp_table = current_app.config['table']
-        current_app.config['table'] = load_images(STATIC_FOLDER)
+        current_app.config['table'] = load_images(app.config['FOLDER'])
         reload_table = []
         for tab in current_app.config['table']:
             name = tab['name']

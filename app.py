@@ -1,6 +1,7 @@
 import argparse
 import os
 import shutil
+from sys import platform
 
 from PIL import Image
 from flask import Flask, render_template, redirect, current_app, send_file
@@ -10,6 +11,8 @@ from pager import Pager
 
 # -f C:\Users\Fabrice\PycharmProjects\xchatchien -p 5001 -l chat,chien -u sarah
 # -f C:\Users\Fabrice\PycharmProjects\xvachecochon -p 5002 -l vache,cochon -u fabrice
+# python app.py -f /workspace/home/test1/chatchien -p 5001 -l chat,chien -u sarah
+# python app.py -f /workspace/home/test1/vachecochon -p 5002 -l vache,cochon -u fabrice
 def getImageProperties(image_path):
     img = Image.open(image_path)
     # print('img:', img.filename)
@@ -68,6 +71,10 @@ def create_app(args):
     # first create the route
     @app.route('/display_image/<path:filepath>')
     def display_image(filepath):
+        print('xxx:', filepath)
+        if 'win' not in platform.lower():
+            if filepath[0] != '/':
+                filepath = '/' + filepath
         return send_file(filepath, as_attachment=True)
 
     @app.route('/')

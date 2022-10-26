@@ -59,6 +59,8 @@ def create_app(args):
 
     app = Flask(__name__, static_folder=STATIC_FOLDER)
     app.config['APPNAME'] = "Image Dispatcher"
+    if args.user:
+        app.config['APPNAME'] += ' - ' + args.user.upper()
     app.config['FOLDER'] = folder
     app.config['table'] = load_images(folder)
     app.config['pager'] = Pager(len(app.config['table']))
@@ -202,6 +204,7 @@ if __name__ == '__main__':
                         default='/home/onyxia/work/to_dispatch')
     parser.add_argument("-p", "--port", help="folder whre images has to be dispatch", required=True, default=5000)
     parser.add_argument("-l", "--labels", help="labels for dispatching", required=True, default='classe1,classe2')
+    parser.add_argument("-u", "--user", help="user of the application instance")
     args = parser.parse_args()
     print('args:', args)
     app = create_app(args)

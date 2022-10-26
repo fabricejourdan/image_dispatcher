@@ -3,7 +3,11 @@
     {% for key in ["name", "extension", "width", "height", "size", "label"] %}
     <tr>
         <td><b>{{ key|e|capitalize }}</b></td>
+        {% if key == "label" %}
+        <td><b>{{ data[key]|e }}</b></td>
+        {% else %}
         <td>{{ data[key]|e }}</td>
+        {% endif %}
     </tr>
     {% endfor %}
     </tbody>

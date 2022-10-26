@@ -18,7 +18,7 @@
             <li><a href="/reload">Reload</a></li>
             <li><a href="">------</a></li>
             {% for label in labels %}
-            <li><a href="/{{pager.current}}/{{loop.index}}">{{ label }}</a></li>
+            <li><a href="/{{pager.current}}/{{loop.index}}"><b>{{ label }}</b></a></li>
             {% endfor %}
             <li><a href="">------</a></li>
             {% include 'links.html' %}
@@ -27,6 +27,7 @@
 
     <div class="row">
         <div class="col-md-6">
+            <img src="{{ url_for('display_image', filepath=data.path) }}" class="img-responsive center-block" alt="">
             <img src="{{ url_for('static', filename='/'+data.name) }}" class="img-responsive center-block" alt="">
         </div>
         <div class="col-md-6">

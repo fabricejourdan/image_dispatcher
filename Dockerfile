@@ -9,4 +9,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 RUN chown -R 42420:42420 /workspace
-CMD [ "python" , "app.py" ,"-f", "C:\\Users\\Fabrice\\PycharmProjects\\xchatchien", "-p", "5001", "-l", "chat,chien", "-u", "sarah"]
+CMD [ "python" , "app.py" ,"-f", "chatchien", "-p", "5001", "-l", "chat,chien", "-u", "sarah"]

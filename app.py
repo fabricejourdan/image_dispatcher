@@ -12,12 +12,12 @@ from pager import Pager
 # -f C:\Users\Fabrice\PycharmProjects\xvachecochon -p 5002 -l vache,cochon
 def getImageProperties(image_path):
     img = Image.open(image_path)
-    print('img:', img.filename)
+    # print('img:', img.filename)
     image_name = os.path.basename(image_path)
     extension = os.path.splitext(image_path)[-1][1:].lower()
     image_width, image_height = img.size
     image_size = os.path.getsize(image_path)
-    print('image_path:', image_path)
+    # print('image_path:', image_path)
     image_size = str(round(image_size / 1024)) + ' Ko'
 
     image_properties = dict(
@@ -206,10 +206,10 @@ if __name__ == '__main__':
     parser.add_argument("-l", "--labels", help="labels for dispatching", required=True, default='classe1,classe2')
     parser.add_argument("-u", "--user", help="user of the application instance")
     args = parser.parse_args()
-    print('args:', args)
+    # print('args:', args)
     app = create_app(args)
     port = int(args.port)
     if port < 5000 or port > 5010:
         port = 5000
-    print('port:', port)
+    # print('port:', port)
     app.run(debug=True, host='0.0.0.0', port=port)

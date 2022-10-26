@@ -7,14 +7,17 @@ from flask import Flask, render_template, redirect, current_app, send_file
 
 from pager import Pager
 
-# -f chatchien -p 5001 -l chat,chien
-# -f vachecochon -p 5002 -l vache,cochon
+
+# -f C:\Users\Fabrice\PycharmProjects\xchatchien -p 5001 -l chat,chien
+# -f C:\Users\Fabrice\PycharmProjects\xvachecochon -p 5002 -l vache,cochon
 def getImageProperties(image_path):
     img = Image.open(image_path)
+    print('img:', img.filename)
     image_name = os.path.basename(image_path)
     extension = os.path.splitext(image_path)[-1][1:].lower()
     image_width, image_height = img.size
     image_size = os.path.getsize(image_path)
+    print('image_path:', image_path)
     image_size = str(round(image_size / 1024)) + ' Ko'
 
     image_properties = dict(
@@ -46,7 +49,7 @@ def load_images(directory):
 
 
 def create_app(args):
-    STATIC_FOLDER = 'to_dispatch'
+    STATIC_FOLDER = '.'
 
     folder = args.folder
     string_labels = args.labels

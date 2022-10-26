@@ -7,7 +7,8 @@ from flask import Flask, render_template, redirect, current_app, send_file
 
 from pager import Pager
 
-
+# -f chatchien -p 5001 -l chat,chien
+# -f vachecochon -p 5002 -l vache,cochon
 def getImageProperties(image_path):
     img = Image.open(image_path)
     image_name = os.path.basename(image_path)
@@ -50,7 +51,7 @@ def create_app(args):
     folder = args.folder
     string_labels = args.labels
 
-    LABELS = [x.capitalize() for x in string_labels.split(',')]
+    LABELS = [x.strip().capitalize() for x in string_labels.split(',')]
     LABELS.append('Incorrect')
 
     app = Flask(__name__, static_folder=STATIC_FOLDER)

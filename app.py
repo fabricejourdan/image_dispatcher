@@ -8,11 +8,19 @@ from flask import Flask, render_template, redirect, current_app, send_file
 
 from pager import Pager
 
+# no more basegun
+# nb images restanrte  / totale + parenthese"s
+# option deplacement sous les classes
 
-# -f C:\Users\Fabrice\PycharmProjects\xchatchien -p 5001 -l chat,chien -u sarah
-# -f C:\Users\Fabrice\PycharmProjects\xvachecochon -p 5002 -l vache,cochon -u fabrice
+
+# -f C:\Users\Fabrice\PycharmProjects\chatchien -p 5001 -l chat,chien -u sarah
+# -f C:\Users\Fabrice\PycharmProjects\vachecochon -p 5002 -l vache,cochon -u fabrice
 # python app.py -f /workspace/home/test1/chatchien -p 5001 -l chat,chien -u sarah
 # python app.py -f /workspace/home/test1/vachecochon -p 5002 -l vache,cochon -u fabrice
+
+# python app.py -f C:\Users\Fabrice\PycharmProjects\firearms -p 5001 -u fabrice
+# -l Revolver,pistolet_semi_auto_moderne,pistolet_a_percussion_silex,epaule_a_verrou,epaule_a_un_coup,epaule_a_pompe,epaule_a_percussion_silex,epaule_a_levier_de_sous_garde,autre_pistolet,autre_epaule
+
 def getImageProperties(image_path):
     img = Image.open(image_path)
     # print('img:', img.filename)

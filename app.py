@@ -38,7 +38,7 @@ def load_images(directory):
     files = os.listdir(directory)
     for file in files:
         if file.lower().endswith(('.jpg', '.png', 'jpeg')):
-            print('load_images - image file :', file)
+            # print('load_images - image file :', file)
             properties = getImageProperties(directory + '/' + file)
             image_list.append(properties)
         # else:
@@ -109,7 +109,7 @@ def create_app(config):
     # first create the route
     @app.route('/display_image/<path:filepath>')
     def display_image(filepath):
-        print('xxx:', filepath)
+        # print('xxx:', filepath)
         if 'win' not in platform.lower():
             if filepath[0] != '/':
                 filepath = '/' + filepath
@@ -123,21 +123,21 @@ def create_app(config):
     def view(ind=None):
         print('view - ind :', ind)
         if current_app.config['pager'].count == 0:
-            print('view - No images to dispatch')
+            # print('view - No images to dispatch')
             message1 = "No images to dispatch"
             message2 = "Copy images on the 'to_dispatch' directory and click on Reload"
             return render_template("error.html",
                                    message1=message1,
                                    message2=message2)
-        elif ind >= current_app.config['pager'].count:
-            print('view - Image not found')
+            # elif ind >= current_app.config['pager'].count:
+            #     print('view - Image not found')
             message1 = "Image not found"
             message2 = "Click on Home"
             return render_template("error.html",
                                    message1=message1,
                                    message2=message2), 404
         else:
-            print('view - current data 2:', current_app.config['table'][ind])
+            # print('view - current data 2:', current_app.config['table'][ind])
             current_app.config['pager'].current = ind
             counters = generate_counters(current_app.config['table'], LABELS)
             for i, label in enumerate(LABELS):
@@ -154,12 +154,12 @@ def create_app(config):
     @app.route('/<int:ind>/<int:cla>/')
     def label(ind=None, cla=None):
         print('label - ind :', ind, ' - cla :', cla)
-        print('label - current data 1:', current_app.config['table'][ind])
+        # print('label - current data 1:', current_app.config['table'][ind])
         label = ''
         if cla > 0 and cla <= len(LABELS):
             label = LABELS[cla - 1][0]
         current_app.config['table'][ind]['label'] = label
-        print('label - current data 2:', current_app.config['table'][ind])
+        # print('label - current data 2:', current_app.config['table'][ind])
         if ind < current_app.config['pager'].count - 1:
             ind += 1
         current_app.config['pager'].current = ind
@@ -169,8 +169,8 @@ def create_app(config):
             return render_template("error.html",
                                    message1=message1,
                                    message2=message2)
-        print('label - new ind :', ind)
-        print('label - new data :', current_app.config['table'][ind])
+        # print('label - new ind :', ind)
+        # print('label - new data :', current_app.config['table'][ind])
         counters = generate_counters(current_app.config['table'], LABELS)
         for i, label in enumerate(LABELS):
             label_string = label[0]
@@ -198,7 +198,7 @@ def create_app(config):
                 shutil.move(original, target)
                 print('dispatch - move file ', original, '->', target)
         current_app.config['table'] = load_images(app.config['folder'])
-        print('label - new table :', current_app.config['table'])
+        # print('label - new table :', current_app.config['table'])
         current_app.config['pager'] = Pager(len(current_app.config['table']))
         ind = 0
         current_app.config['pager'].current = ind
@@ -208,8 +208,8 @@ def create_app(config):
             return render_template("error.html",
                                    message1=message1,
                                    message2=message2)
-        print('label - new ind :', ind)
-        print('label - new data :', current_app.config['table'][ind])
+        # print('label - new ind :', ind)
+        # print('label - new data :', current_app.config['table'][ind])
         counters = generate_counters(current_app.config['table'], LABELS)
         for i, label in enumerate(LABELS):
             label_string = label[0]
@@ -236,7 +236,7 @@ def create_app(config):
                     tab['label'] = sub_tab['label']
             reload_table.append(tab)
         current_app.config['table'] = reload_table
-        print('label - new table :', current_app.config['table'])
+        # print('label - new table :', current_app.config['table'])
         current_app.config['pager'] = Pager(len(current_app.config['table']))
         ind = 0
         current_app.config['pager'].current = ind
@@ -246,8 +246,8 @@ def create_app(config):
             return render_template("error.html",
                                    message1=message1,
                                    message2=message2)
-        print('label - new ind :', ind)
-        print('label - new data :', current_app.config['table'][ind])
+        # print('label - new ind :', ind)
+        # print('label - new data :', current_app.config['table'][ind])
         counters = generate_counters(current_app.config['table'], LABELS)
         for i, label in enumerate(LABELS):
             label_string = label[0]
@@ -267,7 +267,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Image Dispatcher')
     parser.add_argument("-c", "--config", help="config file to instanciate the dispatcher", default='./config.yaml')
     args = parser.parse_args()
-    print('args:', args)
+    # print('args:', args)
 
     application_conf = load_conf_file(args.config)
     app = create_app(application_conf)

@@ -1,0 +1,16 @@
+- application:
+    folder: '.\firearms'
+    port: 5001
+    user: Fabrice
+    labels:
+      - Revolver
+      - pistolet_semi_auto_moderne
+      - pistolet_a_percussion_silex
+      - epaule_a_verrou
+      - epaule_a_un_coup
+      - epaule_a_pompe
+      - epaule_a_percussion_silex
+      - epaule_a_levier_de_sous_garde
+      - autre_pistolet
+      - autre_epaule
+

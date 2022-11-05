@@ -16,16 +16,12 @@
                 <li><a href="/{{pager.next}}">-></a></li>
                 <li><a href="/{{pager.count-1}}">>|</a></li>
             </ul>
+            <span class="navbar-brand">{{ counters['nb_images_restant_a_trier'] }} images à trier sur {{ counters['nb_images_a_trier'] }} </span>
         </div>
         <ul class="nav navbar-nav">
-            <!--<li><a href="/">|<-</a></li>-->
-            <!--<li><a href="/{{pager.prev}}"><-</a></li>-->
             {% for label in labels %}
-            <li><a href="/{{pager.current}}/{{loop.index}}"><b>{{ label }}</b></a></li>
+            <li><a href="/{{pager.current}}/{{loop.index}}"><b>{{ label[0] }} ({{ label[1] }})</b></a></li>
             {% endfor %}
-            <!--<li><a href="/{{pager.next}}">-></a></li>-->
-            <!--<li><a href="/{{pager.count-1}}">>|</a></li>-->
-
             <!--{% include 'links.html' %}-->
         </ul>
     </nav>

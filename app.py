@@ -125,12 +125,12 @@ def create_app(config):
         if current_app.config['pager'].count == 0:
             # print('view - No images to dispatch')
             message1 = "No images to dispatch"
-            message2 = "Copy images on the 'to_dispatch' directory and click on Reload"
+            message2 = "Copy images on the folder where the images must be dispatched and click on Reload"
             return render_template("error.html",
                                    message1=message1,
                                    message2=message2)
-            # elif ind >= current_app.config['pager'].count:
-            #     print('view - Image not found')
+        elif ind >= current_app.config['pager'].count:
+            # print('view - Image not found')
             message1 = "Image not found"
             message2 = "Click on Home"
             return render_template("error.html",
@@ -165,7 +165,7 @@ def create_app(config):
         current_app.config['pager'].current = ind
         if current_app.config['pager'].count == 0:
             message1 = "No images to dispatch"
-            message2 = "Copy images on the 'to_dispatch' directory and click on Reload"
+            message2 = "Copy images on the folder where the images must be dispatched and click on Reload"
             return render_template("error.html",
                                    message1=message1,
                                    message2=message2)
@@ -204,7 +204,7 @@ def create_app(config):
         current_app.config['pager'].current = ind
         if current_app.config['pager'].count == 0:
             message1 = "No images to dispatch"
-            message2 = "Copy images on the 'to_dispatch' directory and click on Reload"
+            message2 = "Copy images on the folder where the images must be dispatched and click on Reload"
             return render_template("error.html",
                                    message1=message1,
                                    message2=message2)
@@ -242,7 +242,7 @@ def create_app(config):
         current_app.config['pager'].current = ind
         if current_app.config['pager'].count == 0:
             message1 = "No images to dispatch"
-            message2 = "Copy images on the 'to_dispatch' directory and click on Reload"
+            message2 = "Copy images on the folder where the images must be dispatched and click on Reload"
             return render_template("error.html",
                                    message1=message1,
                                    message2=message2)

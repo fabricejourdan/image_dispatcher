@@ -13,7 +13,7 @@ You can install the dependencies in a conda environment.
 ```sh
 cd image_dispatcher
 conda create -n image_dispatcher python==3.9
-activate image_dispatcher
+conda activate image_dispatcher
 conda install --file requirements.txt
 ```
 and run the application 

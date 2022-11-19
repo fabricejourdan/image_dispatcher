@@ -39,4 +39,14 @@ the user name and all the classes/folders where the images will be moved
       - .........
       - Incorrect
 	  
-	  
+
+## Use Docker (in progress)	  
+
+Build the image
+```sh
+docker build --file ./Dockerfile --tag image_dispatcher:latest .
+```
+Run the container
+```sh
+docker run -d -v /home/fabrice/:/home/fabrice/ image_dispatcher:latest
+```
